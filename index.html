@@ -1,10 +1,10 @@
-```html id="fullsystem1"
+```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BMW Showroom Pro</title>
+<title>BMW Showroom PRO+</title>
 
 <style>
 body {
@@ -21,10 +21,10 @@ header {
     background: black;
 }
 
-/* Controls */
+/* controls */
 .controls {
     text-align: center;
-    padding: 15px;
+    padding: 10px;
 }
 
 input, select {
@@ -34,7 +34,7 @@ input, select {
     border: none;
 }
 
-/* Cards */
+/* cards */
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -48,11 +48,16 @@ input, select {
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
 }
 
 .card img {
     width: 100%;
-    height: 150px;
+    height: 160px;
     object-fit: cover;
 }
 
@@ -60,7 +65,7 @@ input, select {
     text-align: center;
 }
 
-/* Modal */
+/* modal */
 .modal {
     display: none;
     position: fixed;
@@ -71,24 +76,40 @@ input, select {
 
 .modal-content {
     background: #222;
-    margin: 10% auto;
+    margin: 8% auto;
     padding: 20px;
     width: 80%;
     max-width: 500px;
 }
 
-/* Admin */
+/* admin */
 .admin {
     background: #111;
     padding: 15px;
     text-align: center;
+}
+
+/* drag drop */
+.drop-area {
+    border: 2px dashed #555;
+    padding: 20px;
+    margin: 10px;
+}
+
+.drop-area.hover {
+    border-color: white;
+}
+
+.preview {
+    max-width: 200px;
+    margin-top: 10px;
 }
 </style>
 </head>
 
 <body>
 
-<header>BMW Showroom PRO</header>
+<header>BMW Showroom PRO+</header>
 
 <div class="controls">
     <input type="text" id="search" placeholder="Araç ara...">
@@ -101,13 +122,19 @@ input, select {
 
 <div class="container" id="carList"></div>
 
-<!-- ADMIN PANEL -->
+<!-- ADMIN -->
 <div class="admin">
     <h3>Araç Ekle</h3>
     <input id="name" placeholder="Araç adı">
-    <input id="category" placeholder="Kategori (Sedan/SUV)">
-    <input id="img" placeholder="Görsel URL">
+    <input id="category" placeholder="Kategori">
     <input id="specs" placeholder="Teknik özellikler">
+
+    <div class="drop-area" id="drop">
+        Görseli buraya sürükle
+        <input type="file" id="fileInput">
+        <img id="preview" class="preview">
+    </div>
+
     <button onclick="addCar()">Ekle</button>
 </div>
 
@@ -122,25 +149,11 @@ input, select {
 </div>
 
 <script>
-let cars = JSON.parse(localStorage.getItem("cars")) || [
-    {
-        name: "BMW 3 Serisi",
-        category: "Sedan",
-        img: "https://www.bmw.com/content/dam/bmw/common/all-models/3-series/sedan/2022/highlights/bmw-3-series.jpg",
-        specs: "184 HP - 2.0L Turbo"
-    },
-    {
-        name: "BMW X5",
-        category: "SUV",
-        img: "https://www.bmw.com/content/dam/bmw/common/all-models/x-series/x5.jpg",
-        specs: "340 HP - 3.0L"
-    }
-];
+let cars = JSON.parse(localStorage.getItem("cars")) || [];
 
-function save() {
-    localStorage.setItem("cars", JSON.stringify(cars));
-}
+let currentImage = "";
 
+/* render */
 function render() {
     let list = document.getElementById("carList");
     list.innerHTML = "";
@@ -160,18 +173,26 @@ function render() {
     });
 }
 
+/* add car */
 function addCar() {
+    if (!currentImage) {
+        alert("Görsel yükle!");
+        return;
+    }
+
     let car = {
         name: document.getElementById("name").value,
         category: document.getElementById("category").value,
-        img: document.getElementById("img").value,
-        specs: document.getElementById("specs").value
+        specs: document.getElementById("specs").value,
+        img: currentImage
     };
+
     cars.push(car);
-    save();
+    localStorage.setItem("cars", JSON.stringify(cars));
     render();
 }
 
+/* modal */
 function openModal(title, img, specs) {
     document.getElementById("modal").style.display = "block";
     document.getElementById("mTitle").innerText = title;
@@ -183,6 +204,40 @@ function closeModal() {
     document.getElementById("modal").style.display = "none";
 }
 
+/* drag drop */
+let drop = document.getElementById("drop");
+
+drop.addEventListener("dragover", e => {
+    e.preventDefault();
+    drop.classList.add("hover");
+});
+
+drop.addEventListener("dragleave", () => {
+    drop.classList.remove("hover");
+});
+
+drop.addEventListener("drop", e => {
+    e.preventDefault();
+    drop.classList.remove("hover");
+
+    let file = e.dataTransfer.files[0];
+    handleFile(file);
+});
+
+document.getElementById("fileInput").addEventListener("change", e => {
+    handleFile(e.target.files[0]);
+});
+
+function handleFile(file) {
+    let reader = new FileReader();
+    reader.onload = function(e) {
+        currentImage = e.target.result;
+        document.getElementById("preview").src = currentImage;
+    }
+    reader.readAsDataURL(file);
+}
+
+/* search/filter */
 document.getElementById("search").oninput = render;
 document.getElementById("filter").onchange = render;
 
