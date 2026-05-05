@@ -4,312 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMW Tutkusu | Saf Sürüş Keyfi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Temel Değişkenler ve Sıfırlamalar */
-        :root {
-            --primary-color: #0066b1; 
-            --bg-color: #121212;
-            --text-color: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        /* Header / Navbar */
-        header {
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
-
-        /* Logo Tasarımı */
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px; 
-            text-decoration: none;
-        }
-
-        .nav-logo {
-            height: 40px; 
-            width: auto;
-        }
-
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--text-color);
-            letter-spacing: 2px;
-        }
-
-        .logo-text span {
-            color: var(--primary-color);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        nav ul li a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Hero Section (Arka plan buraya eklendi) */
-        .hero {
-            height: 100vh;
-            /* DİKKAT: Arka plan resmi 'arkaplan.jpg' olarak ayarlandı */
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('arkaplan.jpg') center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s forwards 0.5s;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s forwards 0.8s;
-        }
-
-        .btn {
-            padding: 15px 30px;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            opacity: 0;
-            animation: fadeUp 1s forwards 1.1s;
-        }
-
-        .btn:hover {
-            background-color: #00508c;
-            transform: scale(1.05);
-        }
-
-        /* Models Section */
-        .models {
-            padding: 5rem 5%;
-            text-align: center;
-        }
-
-        .models h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--primary-color);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background-color: #1e1e1e;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card h3 {
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-        }
+        :root { --primary-color: #0066b1; --bg-color: #121212; --text-color: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
         
-        .card p {
-            margin-bottom: 15px;
-        }
+        header { background-color: rgba(0, 0, 0, 0.9); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 100; }
+        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo { height: 40px; width: auto; }
+        .logo-text { font-size: 1.8rem; font-weight: bold; color: var(--text-color); letter-spacing: 2px; }
+        .logo-text span { color: var(--primary-color); }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav ul li a { color: var(--text-color); text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
+        nav ul li a:hover { color: var(--primary-color); }
 
-        .card-btn {
-            align-self: flex-start;
-            padding: 10px 20px;
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 1px solid var(--primary-color);
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
+        .hero { height: 100vh; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('arkaplan.jpg') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
+        .hero h1 { font-size: 4rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 5px; opacity: 0; transform: translateY(30px); animation: fadeUp 1s forwards 0.5s; }
+        .hero p { font-size: 1.5rem; margin-bottom: 2rem; max-width: 600px; opacity: 0; transform: translateY(30px); animation: fadeUp 1s forwards 0.8s; }
+        .btn { padding: 15px 30px; background-color: var(--primary-color); color: white; text-decoration: none; font-size: 1.2rem; border-radius: 5px; transition: all 0.3s ease; opacity: 0; animation: fadeUp 1s forwards 1.1s; display: inline-block; }
+        .btn:hover { background-color: #00508c; transform: scale(1.05); }
 
-        .card-btn:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
+        .models { padding: 5rem 5%; text-align: center; }
+        .models h2 { font-size: 2.5rem; margin-bottom: 3rem; color: var(--primary-color); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background-color: #1e1e1e; border-radius: 10px; overflow: hidden; transition: transform 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-10px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: left; }
+        .card h3 { margin-bottom: 10px; font-size: 1.5rem; }
+        .card p { margin-bottom: 15px; color: #ccc; }
+        .card-btn { align-self: flex-start; padding: 10px 20px; background-color: transparent; color: var(--primary-color); border: 1px solid var(--primary-color); border-radius: 5px; text-decoration: none; transition: all 0.3s ease; font-size: 1rem; }
+        .card-btn:hover { background-color: var(--primary-color); color: white; }
 
-        /* Modal (Açılır Pencere) Tasarımı */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+        .sales-stats { padding: 5rem 5%; background-color: #181818; text-align: center; }
+        .sales-stats h2 { font-size: 2.5rem; margin-bottom: 3rem; color: var(--primary-color); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .stat-box { background-color: #1e1e1e; padding: 40px 20px; border-radius: 10px; border-bottom: 4px solid var(--primary-color); transition: transform 0.3s ease; }
+        .stat-box:hover { transform: translateY(-10px); }
+        .stat-number { font-size: 3.5rem; font-weight: bold; color: #ffffff; margin-bottom: 10px; }
+        .stat-text { font-size: 1.1rem; color: #aaaaaa; }
 
-        .modal.show {
-            display: flex;
-            opacity: 1;
-        }
+        .contact-section { background-color: #0a0a0a; padding: 5rem 5% 2rem; text-align: center; border-top: 1px solid #222; }
+        .contact-section h2 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1.5rem; }
+        .contact-desc { color: #ccc; max-width: 600px; margin: 0 auto 2.5rem auto; font-size: 1.1rem; }
+        .email-link { color: var(--text-color); text-decoration: none; font-size: 1.3rem; display: inline-flex; align-items: center; gap: 10px; padding: 10px 20px; background-color: #1e1e1e; border-radius: 30px; border: 1px solid #333; margin-bottom: 2.5rem; transition: all 0.3s ease;}
+        .email-link:hover { color: var(--primary-color); border-color: var(--primary-color); }
+        .social-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 3rem; }
+        .social-icon { display: flex; justify-content: center; align-items: center; width: 50px; height: 50px; background-color: #1e1e1e; color: var(--text-color); border-radius: 50%; text-decoration: none; font-size: 1.5rem; transition: all 0.3s ease; }
+        .social-icon:hover { background-color: var(--primary-color); transform: translateY(-5px); color: white; }
+        .copyright { border-top: 1px solid #333; padding-top: 2rem; font-size: 0.9rem; color: #666; }
 
-        .modal-content {
-            background-color: #1e1e1e;
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 800px;
-            width: 90%;
-            position: relative;
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-        }
-
-        .modal.show .modal-content {
-            transform: scale(1);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-btn:hover {
-            color: #fff;
-        }
-
-        .modal-body {
-            display: flex;
-            gap: 20px;
-            margin-top: 10px;
-        }
-
-        .modal-body img {
-            width: 50%;
-            border-radius: 5px;
-            object-fit: cover;
-        }
-
-        .modal-info h3 {
-            color: var(--primary-color);
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .modal-info ul {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        .modal-info ul li {
-            margin-bottom: 10px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 5px;
-        }
-
-        .modal-info ul li strong {
-            color: #aaa;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: #0a0a0a;
-            margin-top: 2rem;
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1.1rem; }
-            nav ul { display: none; }
-            .modal-body { flex-direction: column; }
-            .modal-body img { width: 100%; }
-        }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } nav ul { display: none; } }
     </style>
 </head>
 <body>
@@ -323,6 +70,7 @@
             <ul>
                 <li><a href="#home">Ana Sayfa</a></li>
                 <li><a href="#models">Modeller</a></li>
+                <li><a href="#sales">Rakamlar</a></li>
                 <li><a href="#contact">İletişim</a></li>
             </ul>
         </nav>
@@ -344,7 +92,8 @@
                         <h3>BMW M3 Competition</h3>
                         <p>Pist performansı günlük kullanımla buluşuyor. 510 beygir gücündeki bu canavarla tanışın.</p>
                     </div>
-                    <button class="card-btn" id="open-m3-modal">Detayları İncele</button>
+                    <!-- YENİ: Ayrı sayfaya giden link -->
+                    <a href="m3.html" class="card-btn">Detayları İncele</a>
                 </div>
             </div>
             
@@ -355,7 +104,8 @@
                         <h3>BMW i8</h3>
                         <p>Geleceğin spor otomobili. Aerodinamik tasarım ve yenilikçi hibrit teknolojisi.</p>
                     </div>
-                    <button class="card-btn" id="open-i8-modal">Detayları İncele</button>
+                    <!-- YENİ: Ayrı sayfaya giden link -->
+                    <a href="i8.html" class="card-btn">Detayları İncele</a>
                 </div>
             </div>
 
@@ -366,112 +116,42 @@
                         <h3>BMW M5 CS</h3>
                         <p>Lüks bir sedanın içinde yatan safkan bir yarış aracı. Gücün zirvesi.</p>
                     </div>
-                    <button class="card-btn" id="open-m5-modal">Detayları İncele</button>
+                    <!-- YENİ: Ayrı sayfaya giden link -->
+                    <a href="m5.html" class="card-btn">Detayları İncele</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer id="contact">
-        <p>&copy; 2026 BMW Tutkusu Projesi. GitHub Pages üzerinde barındırılmaktadır.</p>
+    <section class="sales-stats" id="sales">
+        <h2>Global Başarı ve Rakamlar</h2>
+        <div class="stats-grid">
+            <div class="stat-box"><div class="stat-number">2.5M+</div><div class="stat-text">Yıllık Küresel Araç Teslimatı</div></div>
+            <div class="stat-box"><div class="stat-number">%74</div><div class="stat-text">Tam Elektrikli (BEV) Satış Büyümesi</div></div>
+            <div class="stat-box"><div class="stat-number">200K+</div><div class="stat-text">Yıllık BMW M Modeli Satışı</div></div>
+            <div class="stat-box"><div class="stat-number">140+</div><div class="stat-text">Resmi Satış Yapılan Ülke</div></div>
+        </div>
+    </section>
+
+    <footer class="contact-section" id="contact">
+        <h2>Bize Ulaşın</h2>
+        <p class="contact-desc">Soru, görüş ve önerileriniz için e-posta gönderebilir veya markanın en güncel gelişmelerini resmi sosyal medya hesaplarından takip edebilirsiniz.</p>
+        <a href="mailto:iletisim@bmw.com.tr" class="email-link"><i class="fas fa-envelope"></i> iletisim@bmw.com.tr</a>
+        <div class="social-links">
+            <a href="https://www.instagram.com/bmw/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/BMW/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/BMW" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p class="copyright">&copy; 2026 BMW Tutkusu Projesi. Tüm hakları saklıdır.</p>
     </footer>
-
-    <!-- M3 Modal -->
-    <div id="m3-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="close-m3-modal">&times;</span>
-            <div class="modal-body">
-                <img src="m3.jpg" alt="BMW M3 Detay">
-                <div class="modal-info">
-                    <h3>BMW M3 Competition</h3>
-                    <p>Agresif tasarımı ve efsanevi yol tutuşu ile adrenalin arayanların ilk tercihi.</p>
-                    <ul>
-                        <li><strong>Motor:</strong> 3.0 Litre 6 Silindirli M TwinPower Turbo</li>
-                        <li><strong>Güç:</strong> 510 Beygir (HP)</li>
-                        <li><strong>0-100 km/s Hızlanma:</strong> 3.9 Saniye</li>
-                        <li><strong>Çekiş:</strong> Arkadan itiş veya M xDrive Dört Tekerlekten Çekiş</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- i8 Modal -->
-    <div id="i8-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="close-i8-modal">&times;</span>
-            <div class="modal-body">
-                <img src="i8.jpg" alt="BMW i8 Detay">
-                <div class="modal-info">
-                    <h3>BMW i8 Plug-in Hybrid</h3>
-                    <p>BMW'nin "Project i" vizyonunun en ikonik temsilcisi. Karbon fiber gövdesiyle bir tasarım şaheseri.</p>
-                    <ul>
-                        <li><strong>Motor:</strong> 1.5L 3 Silindirli Turbo + Elektrik Motoru</li>
-                        <li><strong>Toplam Güç:</strong> 374 Beygir (HP)</li>
-                        <li><strong>0-100 km/s Hızlanma:</strong> 4.4 Saniye</li>
-                        <li><strong>Gövde:</strong> Karbon fiber takviyeli yolcu hücresi (CFRP)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- M5 Modal -->
-    <div id="m5-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="close-m5-modal">&times;</span>
-            <div class="modal-body">
-                <img src="m5.jpg" alt="BMW M5 Detay">
-                <div class="modal-info">
-                    <h3>BMW M5 CS</h3>
-                    <p>Bugüne kadar üretilmiş en güçlü BMW M modeli. Konfor ve inanılmaz bir pist performansı bir arada.</p>
-                    <ul>
-                        <li><strong>Motor:</strong> 4.4 Litre V8 M TwinPower Turbo</li>
-                        <li><strong>Güç:</strong> 635 Beygir (HP)</li>
-                        <li><strong>0-100 km/s Hızlanma:</strong> 3.0 Saniye</li>
-                        <li><strong>Ağırlık Azaltma:</strong> Yoğun karbon fiber parçalar</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
             });
         });
-
-        const m3Modal = document.getElementById("m3-modal");
-        const i8Modal = document.getElementById("i8-modal");
-        const m5Modal = document.getElementById("m5-modal");
-
-        const btnM3 = document.getElementById("open-m3-modal");
-        const btnI8 = document.getElementById("open-i8-modal");
-        const btnM5 = document.getElementById("open-m5-modal");
-
-        const closeM3 = document.getElementById("close-m3-modal");
-        const closeI8 = document.getElementById("close-i8-modal");
-        const closeM5 = document.getElementById("close-m5-modal");
-
-        btnM3.onclick = function() { m3Modal.classList.add("show"); }
-        closeM3.onclick = function() { m3Modal.classList.remove("show"); }
-
-        btnI8.onclick = function() { i8Modal.classList.add("show"); }
-        closeI8.onclick = function() { i8Modal.classList.remove("show"); }
-
-        btnM5.onclick = function() { m5Modal.classList.add("show"); }
-        closeM5.onclick = function() { m5Modal.classList.remove("show"); }
-
-        window.onclick = function(event) {
-            if (event.target == m3Modal) { m3Modal.classList.remove("show"); }
-            if (event.target == i8Modal) { i8Modal.classList.remove("show"); }
-            if (event.target == m5Modal) { m5Modal.classList.remove("show"); }
-        }
     </script>
 </body>
 </html>
