@@ -3,38 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMW M3 Competition | Saf Güç</title>
+    <title>BMW M3 Competition | Saf Güç, Kusursuz Denge</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --primary-color: #0066b1; --bg-color: #000000; --text-color: #ffffff; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+        /* Apple Tarzı Renkler ve Değişkenler */
+        :root { --primary-color: #0066cc; --bg-color: #000000; --text-color: #f5f5f7; --text-muted: #86868b; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.5; overflow-x: hidden; }
         
         /* Navbar */
-        header { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 100; border-bottom: 1px solid #333; }
-        .logo-text { font-size: 1.5rem; font-weight: bold; color: white; text-decoration: none; letter-spacing: 1px;}
+        header { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: white; text-decoration: none; letter-spacing: 1px; }
         .logo-text span { color: var(--primary-color); }
         .back-link { color: white; text-decoration: none; font-size: 1rem; transition: color 0.3s; }
         .back-link:hover { color: var(--primary-color); }
 
-        /* Apple Style Hero Presentation */
-        .showcase { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding-top: 15vh; text-align: center; overflow: hidden; }
-        .showcase-text { z-index: 2; position: relative; }
-        .showcase h1 { font-size: 5rem; font-weight: 800; letter-spacing: -2px; margin-bottom: 10px; background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .showcase h2 { font-size: 2rem; font-weight: 400; color: #a1a1a6; margin-bottom: 20px; }
+        /* Kaydırma Animasyonları İçin Temel Sınıflar */
+        .reveal { opacity: 0; transform: translateY(80px); transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Hero Section (Açılış) */
+        .hero-section { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; position: relative; }
+        .hero-section h1 { font-size: 6rem; font-weight: 800; letter-spacing: -3px; margin-bottom: 10px; background: linear-gradient(to right, #ffffff, #888888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-section h2 { font-size: 2.5rem; font-weight: 400; color: var(--text-muted); }
         
-        /* Resim Alanı - Buradaki img etiketinin src kısmını kendi resminle değiştirebilirsin */
-        .showcase img { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80%; max-width: 1200px; z-index: 1; object-fit: contain; }
+        /* Immersive Kaydırma Bölümleri */
+        .immersive-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 100px 5%; text-align: center; }
+        .immersive-text { max-width: 800px; margin-bottom: 40px; }
+        .immersive-text h3 { font-size: 3.5rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
+        .immersive-text p { font-size: 1.5rem; color: var(--text-muted); font-weight: 400; }
+        
+        /* Büyük İmaj Stilleri */
+        .immersive-img-container { width: 100%; max-width: 1400px; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .immersive-img-container img { width: 100%; height: auto; display: block; transform: scale(1.02); transition: transform 0.5s ease; }
+        .immersive-img-container:hover img { transform: scale(1); } 
 
         /* Teknik Özellikler Bölümü */
-        .specs-section { background-color: #111111; padding: 5rem 10%; }
-        .specs-title { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; color: white; }
-        .spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; border-top: 1px solid #333; padding-top: 3rem; }
-        .spec-item { border-left: 1px solid #333; padding-left: 20px; }
-        .spec-item h4 { color: #888; font-size: 1rem; font-weight: normal; margin-bottom: 5px; }
-        .spec-item p { font-size: 1.8rem; font-weight: bold; color: white; }
+        .specs-section { background-color: #0a0a0a; padding: 8rem 10%; border-top: 1px solid #222; }
+        .specs-title { text-align: center; font-size: 3rem; margin-bottom: 5rem; color: white; font-weight: 700; letter-spacing: -1px; }
+        .spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; }
+        .spec-item { border-left: 2px solid #333; padding-left: 25px; }
+        .spec-item h4 { color: #888; font-size: 1.2rem; font-weight: 500; margin-bottom: 10px; }
+        .spec-item p { font-size: 2.5rem; font-weight: 700; color: white; letter-spacing: -1px; }
 
-        @media (max-width: 768px) { .showcase h1 { font-size: 3rem; } .showcase img { width: 100%; bottom: 10%; } }
+        @media (max-width: 768px) { 
+            .hero-section h1 { font-size: 4rem; } 
+            .hero-section h2 { font-size: 1.8rem; }
+            .immersive-text h3 { font-size: 2.5rem; }
+            .immersive-text p { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
@@ -44,24 +61,99 @@
         <a href="index.html" class="back-link"><i class="fas fa-chevron-left"></i> Ana Sayfaya Dön</a>
     </header>
 
-    <section class="showcase">
-        <div class="showcase-text">
-            <h1>M3 Competition</h1>
-            <h2>Performansın yeni tanımı.</h2>
-        </div>
-        <!-- M3 FOTOĞRAFINI BURAYA EKLEYECEKSİN -->
-        <img src="m3_large.jpg" alt="BMW M3 Büyük Fotoğraf">
+    <!-- Açılış Metni -->
+    <section class="hero-section reveal">
+        <h1>M3 Competition</h1>
+        <h2>Efsanevi miras. Modern agresiflik.</h2>
     </section>
 
-    <section class="specs-section">
+    <!-- Bölüm 1: Arka Koltuklar (m3.f1.jpg) -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Dinamizm Her Yerde.</h3>
+            <p>Arka yaşam alanında bile M ruhunu hissettiren, siyah detaylı premium deri döşemeler.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="m3.f1.jpg" alt="BMW M3 Arka Koltuklar">
+        </div>
+    </section>
+
+    <!-- Bölüm 2: Ön M Koltuklar (m3.f2.jpg) -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Piste Hazır Konfor.</h3>
+            <p>Geliştirilmiş yanal destekleriyle M yarış koltukları, pistte de şehirde de sizi sımsıkı sarar.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="m3.f2.jpg" alt="BMW M3 Ön Koltuklar">
+        </div>
+    </section>
+
+    <!-- Bölüm 3: Orta Konsol ve Multimedya (m3.f3.jpg) -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Akıllı Kontrol Merkezi.</h3>
+            <p>Gelişmiş bilgi-eğlence sistemi ve krom detaylı havalandırma kontrolleriyle yolculuğun hakimi olun.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="m3.f3.jpg" alt="BMW M3 Orta Konsol">
+        </div>
+    </section>
+
+    <!-- Bölüm 4: Dijital Gösterge Paneli (m3.f4.jpg) -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Sadece Gerekli Olanlar.</h3>
+            <p>M serisine özel tasarımıyla dijital gösterge paneli. Odak noktanız sadece performans.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="m3.f4.jpg" alt="BMW M3 Dijital Gösterge">
+        </div>
+    </section>
+
+    <!-- Bölüm 5: Direksiyon M Butonu (m3.f5.jpg) -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Karakterinizi Seçin.</h3>
+            <p>Direksiyondaki kırmızı M butonları ile aracınızın vahşi doğasını tek dokunuşla serbest bırakın.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="m3.f5.jpg" alt="BMW M3 Direksiyon M Butonu">
+        </div>
+    </section>
+
+    <!-- Bölüm 6: Tam Kokpit (m3.f6.jpg) -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Karbon Fiber Sanatı.</h3>
+            <p>Sürücü odaklı tasarlanan kokpit, gerçek karbon fiber dokunuşlarıyla sportif hissi zirveye taşıyor.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="m3.f6.jpg" alt="BMW M3 Kokpit Genel Görünüm">
+        </div>
+    </section>
+
+    <!-- Bölüm 7: Motor (m3.f7.jpg) -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Kalbinde Bir Efsane Yatar.</h3>
+            <p>3.0 Litre 6 Silindirli M TwinPower Turbo. Kusursuz bir mühendislik ve eşsiz bir egzoz senfonisi.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="m3.f7.jpg" alt="BMW M3 Motor">
+        </div>
+    </section>
+
+    <!-- Teknik Özellikler Bölümü -->
+    <section class="specs-section reveal">
         <h3 class="specs-title">Teknik Özellikler</h3>
         <div class="spec-grid">
             <div class="spec-item">
-                <h4>Motor</h4>
-                <p>3.0L M TwinPower Turbo</p>
+                <h4>Motor Tipi</h4>
+                <p>3.0L 6 Silindir Turbo</p>
             </div>
             <div class="spec-item">
-                <h4>Beygir Gücü</h4>
+                <h4>Maksimum Güç</h4>
                 <p>510 BG</p>
             </div>
             <div class="spec-item">
@@ -75,5 +167,22 @@
         </div>
     </section>
 
+    <!-- Scroll Animasyonunu Tetikleyen Javascript Kodları -->
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; 
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal; 
+    </script>
 </body>
 </html>
