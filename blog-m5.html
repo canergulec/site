@@ -12,7 +12,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.7; overflow-x: hidden; }
 
-        header { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        /* SADECE NAVBAR İÇİN HEADER (BUG ÇÖZÜLDÜ) */
+        .main-navbar { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
         .nav-logo { height: 40px; width: auto; }
         .logo-text { font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: 1px; }
@@ -46,19 +47,25 @@
         .submit-btn { align-self: flex-start; padding: 12px 30px; background-color: var(--primary-color); color: white; border: none; border-radius: 20px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background-color 0.3s; }
         .submit-btn:hover { background-color: #0077ed; }
 
-        /* Yorum Listesi */
+        /* Yorum Listesi ve Dinamik Özellikler */
         .comment-list { display: flex; flex-direction: column; gap: 25px; }
-        .comment-box { background-color: var(--card-bg); padding: 25px; border-radius: 16px; }
+        .comment-box { background-color: var(--card-bg); padding: 25px; border-radius: 16px; animation: fadeIn 0.4s ease-out; }
         .comment-author { font-weight: 700; color: white; margin-bottom: 5px; font-size: 1.1rem; }
         .comment-date { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; display: block; }
         .comment-text { font-size: 1.05rem; color: #d2d2d7; }
+        
+        /* Sil Butonu Tasarımı */
+        .delete-btn { background-color: rgba(255, 59, 48, 0.2); color: #ff3b30; border: 1px solid rgba(255, 59, 48, 0.5); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.3s; }
+        .delete-btn:hover { background-color: #ff3b30; color: white; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 768px) { .article-title { font-size: 2.5rem; } .article-content { font-size: 1.1rem; padding: 0 20px; } .comments-section { padding: 50px 20px 0; } }
     </style>
 </head>
 <body>
 
-    <header>
+    <header class="main-navbar">
         <a href="index.html" class="logo-container">
             <img src="logo.png" alt="BMW Logo" class="nav-logo">
             <span class="logo-text">BMW<span>M</span></span>
@@ -67,16 +74,16 @@
     </header>
 
     <main>
-        <header class="article-header">
+        <!-- BUG ÇÖZÜMÜ: Burayı <header> yerine <div class="article-header"> yaptık -->
+        <div class="article-header">
             <span class="article-category">İnceleme • Mühendislik</span>
             <h1 class="article-title">Mühendislik Bakış Açısıyla: M5 CS'in Kalbine İnceliyoruz</h1>
             <div class="article-meta">
                 <span><i class="far fa-calendar-alt"></i> 6 Mayıs 2026</span>
                 <span><i class="far fa-user"></i> Yazar: BMW Tutkusu Editörü</span>
             </div>
-        </header>
+        </div>
 
-        <!-- Daha önce deponda bulunan m5_large8.jpg görselini kullanıyoruz -->
         <img src="m5_large8.jpg" alt="BMW M5 CS Motor" class="article-hero-image">
 
         <article class="article-content">
@@ -92,31 +99,80 @@
 
         <!-- YORUMLAR BÖLÜMÜ -->
         <section class="comments-section">
-            <h3>Yorumlar (2)</h3>
+            <h3>Yorumlar</h3>
             
-            <!-- Yorum Formu -->
-            <form class="comment-form" onsubmit="event.preventDefault(); alert('Yorumunuz inceleme için gönderildi. Teşekkürler!');">
-                <input type="text" placeholder="İsminiz" required>
-                <textarea placeholder="Makale hakkındaki düşünceleriniz..." required></textarea>
+            <!-- Etkileşimli Yorum Formu -->
+            <form class="comment-form" id="commentForm">
+                <input type="text" id="commentAuthor" placeholder="İsminiz" required>
+                <textarea id="commentText" placeholder="Makale hakkındaki düşünceleriniz..." required></textarea>
                 <button type="submit" class="submit-btn">Yorumu Gönder</button>
             </form>
 
-            <!-- Örnek Yorumlar -->
-            <div class="comment-list">
+            <!-- Yorumların Listelendiği Alan -->
+            <div class="comment-list" id="commentList">
+                <!-- Statik Örnek Yorumlar -->
                 <div class="comment-box">
-                    <div class="comment-author">Ahmet Yılmaz</div>
-                    <span class="comment-date">6 Mayıs 2026, 14:30</span>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <div class="comment-author">Ahmet Yılmaz</div>
+                            <span class="comment-date">6 Mayıs 2026, 14:30</span>
+                        </div>
+                    </div>
                     <p class="comment-text">Özellikle Hot-V mimarisinin tepki süresine etkisini açıkladığınız kısım çok bilgilendirici olmuş. Elinize sağlık.</p>
                 </div>
 
                 <div class="comment-box">
-                    <div class="comment-author">Deniz K.</div>
-                    <span class="comment-date">6 Mayıs 2026, 16:45</span>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <div class="comment-author">Deniz K.</div>
+                            <span class="comment-date">6 Mayıs 2026, 16:45</span>
+                        </div>
+                    </div>
                     <p class="comment-text">Yazılımın gücü gerçekten inanılmaz bir seviyeye geldi. Araçlardaki işlem gücü artık bilgisayarlarımızla yarışıyor.</p>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Yorum Ekleme ve Silme (Javascript) -->
+    <script>
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Sayfanın yenilenmesini engeller
+
+            // Formdaki değerleri al
+            const author = document.getElementById('commentAuthor').value;
+            const text = document.getElementById('commentText').value;
+            
+            // Mevcut tarih ve saati al
+            const now = new Date();
+            const dateOptions = { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute:'2-digit' };
+            const dateString = now.toLocaleDateString('tr-TR', dateOptions);
+
+            // Yeni yorum için HTML oluştur
+            const commentBox = document.createElement('div');
+            commentBox.className = 'comment-box';
+            commentBox.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <div class="comment-author">${author}</div>
+                        <span class="comment-date">${dateString}</span>
+                    </div>
+                    <!-- SİL BUTONU -->
+                    <button class="delete-btn" onclick="this.parentElement.parentElement.remove()">
+                        <i class="fas fa-trash"></i> Sil
+                    </button>
+                </div>
+                <p class="comment-text">${text}</p>
+            `;
+
+            // Yorumu listenin en üstüne ekle
+            const commentList = document.getElementById('commentList');
+            commentList.insertBefore(commentBox, commentList.firstChild);
+
+            // Formu temizle
+            document.getElementById('commentAuthor').value = '';
+            document.getElementById('commentText').value = '';
+        });
+    </script>
 </body>
 </html>
