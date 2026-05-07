@@ -60,7 +60,7 @@
         }
         .back-btn:hover { color: var(--primary-color); }
 
-        /* YENİ GÜNCELLENEN ARKA PLAN KISMI */
+        /* YENİ GÜNCELLENEN ARKA PLAN KISMI - KUSURSUZ GEÇİŞ */
         .article-hero {
             height: 90vh;
             position: relative;
@@ -70,9 +70,9 @@
             align-items: center;
             text-align: center;
             padding: 0 10%;
-            /* İstediğin i8-c1.jpg görseli ve haber sayfasındaki siyah/yarı saydam degrade efekti eklendi */
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.95)), url('i8-c1.jpg') center/cover;
-            background-attachment: fixed; /* Daha şık bir scroll efekti için eklendi */
+            /* Gradient to bottom ile alt kısmın %100 siyah (#000000) olması sağlandı */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,1) 100%), url('i8-c1.jpg') center/cover;
+            background-attachment: fixed; 
         }
 
         .article-hero h1 {
