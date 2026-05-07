@@ -3,97 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geleceğin Mirası: BMW i8 - BMW Tutkusu Blog</title>
+    <title>i8 Aerodinamik Sırları | BMW Tutkusu</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        :root { --primary-color: #0066cc; --bg-color: #000000; --card-bg: #1c1c1e; --text-color: #f5f5f7; --text-muted: #86868b; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.7; overflow-x: hidden; }
+        :root {
+            --primary-color: #0066cc;
+            --accent-blue: #00f2ff;
+            --bg-color: #000000;
+            --card-bg: rgba(28, 28, 30, 0.95);
+            --text-color: #f5f5f7;
+            --text-muted: #86868b;
+            --m-stripe-red: #ff0000;
+            --m-stripe-darkblue: #0000ff;
+            --m-stripe-lightblue: #00aaff;
+        }
 
-        .main-navbar { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .nav-logo { height: 40px; width: auto; }
-        .logo-text { font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: 1px; }
+        .nav-logo { height: 35px; }
+        .logo-text { font-size: 1.4rem; font-weight: 700; color: white; letter-spacing: 1px; }
         .logo-text span { color: var(--primary-color); }
-        .back-link { color: white; text-decoration: none; font-size: 1rem; transition: color 0.3s; }
-        .back-link:hover { color: var(--primary-color); }
 
-        .article-header { padding: 150px 20px 50px; max-width: 800px; margin: 0 auto; text-align: left; }
-        .article-category { color: var(--primary-color); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; display: block; margin-bottom: 15px; }
-        .article-title { font-size: 3.5rem; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 25px; color: white; }
-        .article-meta { color: var(--text-muted); font-size: 1.1rem; border-top: 1px solid #333; padding-top: 20px; display: flex; gap: 20px; }
+        .back-btn {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex; align-items: center; gap: 8px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { color: var(--primary-color); }
 
-        .article-hero-image { width: 100%; max-width: 1000px; margin: 0 auto 50px; display: block; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .article-hero {
+            height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.95)), url('http://googleusercontent.com/image_collection/image_retrieval/8097649297708325144') center/cover;
+        }
 
-        .article-content { max-width: 750px; margin: 0 auto 80px; font-size: 1.25rem; color: #d2d2d7; }
-        .article-content p { margin-bottom: 25px; }
-        .article-content h3 { color: white; font-size: 2rem; margin: 40px 0 20px; font-weight: 700; letter-spacing: -0.5px; }
+        .article-hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            max-width: 900px;
+            background: linear-gradient(to bottom, #ffffff, #86868b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-        /* Yorum Bölümü Kapsayıcısı */
-        .comments-section { max-width: 750px; margin: 0 auto 100px; padding-top: 50px; border-top: 1px solid #333; }
-        .comments-section h3 { font-size: 2rem; color: white; margin-bottom: 30px; font-weight: 700; }
+        .author-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 35px;
+            animation: fadeIn 1.5s ease;
+        }
 
-        @media (max-width: 768px) { .article-title { font-size: 2.5rem; } .article-content { font-size: 1.1rem; padding: 0 20px; } .comments-section { padding: 50px 20px 0; } }
+        .author-photo {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 102, 204, 0.3);
+        }
+
+        .author-info { text-align: left; }
+        .author-name { margin: 0; font-weight: 700; font-size: 1.1rem; color: white; }
+        .author-title { margin: 0; font-size: 0.85rem; color: var(--text-muted); }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: -80px auto 100px;
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        .article-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(30px);
+            border-radius: 40px;
+            padding: 80px 60px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.9);
+        }
+
+        .section-title { font-size: 2.2rem; font-weight: 700; margin: 60px 0 25px; color: white; letter-spacing: -1px; }
+        .article-text { font-size: 1.2rem; color: #d2d2d7; margin-bottom: 30px; font-weight: 400; text-align: justify; }
+        .highlight-text { color: white; font-weight: 600; }
+
+        .quote-box {
+            border-left: 4px solid var(--primary-color);
+            padding: 25px 35px;
+            margin: 50px 0;
+            background: rgba(255, 255, 255, 0.03);
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #f5f5f7;
+            border-radius: 0 20px 20px 0;
+        }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin: 60px 0; }
+        .feature-item { background: rgba(255, 255, 255, 0.03); border-radius: 25px; padding: 35px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.4s; }
+        .feature-item:hover { transform: translateY(-10px); background: rgba(0, 102, 204, 0.05); border-color: var(--primary-color); }
+        .feature-item i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; }
+
+        .stat-container { margin: 60px 0; padding: 40px; background: rgba(255,255,255,0.02); border-radius: 25px; }
+        .stat-bar { margin-bottom: 35px; }
+        .stat-info { display: flex; justify-content: space-between; margin-bottom: 12px; font-weight: 600; font-size: 1.1rem; }
+        .progress-bg { height: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 5px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(to right, var(--primary-color), var(--accent-blue)); border-radius: 5px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .article-hero h1 { font-size: 2.8rem; }
+            .article-card { padding: 40px 25px; }
+            .section-title { font-size: 1.8rem; }
+            .quote-box { padding: 20px; font-size: 1.1rem; }
+        }
     </style>
 </head>
 <body>
 
-    <header class="main-navbar">
+    <header>
         <a href="index.html" class="logo-container">
-            <!-- logo.png dosyasının GitHub'da aynı dizinde olduğundan emin ol -->
             <img src="logo.png" alt="BMW Logo" class="nav-logo">
             <span class="logo-text">BMW<span>M</span></span>
         </a>
-        <a href="index.html#blog" class="back-link"><i class="fas fa-chevron-left"></i> Blog'a Dön</a>
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-chevron-left"></i> Ana Sayfaya Dön
+        </a>
     </header>
 
-    <main>
-        <div class="article-header">
-            <span class="article-category">Teknoloji • Aerodinamik</span>
-            <h1 class="article-title">Geleceğin Mirası: BMW i8'in Aerodinamik Sırları</h1>
-            <div class="article-meta">
-                <span><i class="far fa-calendar-alt"></i> 28 Nisan 2026</span>
-                <span><i class="far fa-user"></i> Yazar: Azra Tanrıverdi</span>
+    <section class="article-hero">
+        <span class="meta-tag" style="background-color: var(--primary-color); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; animation: fadeIn 1s ease;">Teknoloji • Aerodinamik</span>
+        <h1>Geleceğin Mirası: BMW i8'in Aerodinamik Sırları</h1>
+        
+        <div class="author-container">
+            <img src="photo.png" alt="Azra Tanrıverdi" class="author-photo">
+            <div class="author-info">
+                <p class="author-name">Azra Tanrıverdi</p>
+                <p class="author-title">Aerodinamik Uzmanı & Teknoloji Editörü</p>
             </div>
         </div>
+    </section>
 
-        <!-- Görselin adını daha önce yüklediğin i8.jpg olarak ayarladım -->
-        <img src="i8-c1.jpg" alt="BMW i8 Rüzgar Tüneli Testi" class="article-hero-image">
-
-        <article class="article-content">
-            <p>BMW i8, yollara ilk çıktığında sadece çarpıcı tasarıma sahip bir spor otomobil değildi; aynı zamanda otomotiv dünyası için tekerlekli bir laboratuvardı. Performans ve sürdürülebilirliğin aynı potada eritilebileceğini kanıtlayan bu modelin kalbinde, motor gücünden ziyade ileri düzey aerodinamik ve materyal bilimi yatıyordu.</p>
+    <div class="content-wrapper">
+        <article class="article-card">
             
-            <p>Karbon fiber yolcu hücresi (CFRP) kullanımı, şasi ağırlığını dramatik ölçüde düşürerek batarya paketlerinin getirdiği ekstra kütleyi sıfırladı. Bu kompozit yapı, çelikten daha güçlü ve alüminyumdan çok daha hafif olmasıyla, yüksek hızlı virajlarda burulma direncini maksimize eden kritik bir mühendislik hamlesiydi.</p>
+            <p class="article-text">
+                BMW i8, otomobil dünyasına adım attığı andan itibaren sadece bir spor otomobil değil, rüzgarın bizzat şekil verdiği bir mühendislik şaheseri olarak kabul edildi. Klasik içten yanmalı motorların agresif ve köşeli hatlarının aksine i8, akışkan dinamiğinin (fluid dynamics) yollara inmiş halidir. <span class="highlight-text">LifeDrive mimarisi</span> ile karbon fiber destekli plastiğin (CFRP) olağanüstü şekillendirilebilirliğini kullanan mühendisler, otomotiv endüstrisinde eşine az rastlanır bir sürtünme katsayısına imza attılar.
+            </p>
 
-            <h3>Rüzgar Tünelinde Heykeltıraşlık: Cd 0.26</h3>
-            <p>Bir aracın elektrik menzilini artırmanın en etkili yolu bataryayı büyütmek değil, havayı yenmektir. i8'in tasarımında kullanılan "su damlası" formu ve akışkan hatlar, aracın rüzgar direncini (Cd) 0.26 gibi muazzam bir değere düşürdü. Ön tampondaki hava perdeleri (Air Curtains), tekerleklerin etrafındaki türbülansı en aza indirirken, arka kısımdaki kanallı yapı havanın aracı pürüzsüzce terk etmesini sağlıyor.</p>
+            <h2 class="section-title">1. Gözyaşı Damlası Formu ve Rüzgarın Doğası</h2>
+            <p class="article-text">
+                Doğadaki en aerodinamik şekil, düşen bir su damlasıdır. BMW i8'in genel silüetine üstten veya yandan baktığınızda, bu gözyaşı formunu (Teardrop Shape) net bir şekilde görebilirsiniz. Ön tarafın rüzgarı pürüzsüzce yarıp arka tarafa doğru daralarak ilerlemesi, rüzgarın otomobilin arkasında oluşturduğu vakum etkisini (drag) minimize eder. Bu tasarım sayesinde i8, sadece <span class="highlight-text">0.26 Cd</span> (sürtünme katsayısı) gibi spor otomobil sınıfında devrim yaratan bir değere ulaşır.
+            </p>
 
-            <p>Sonuç olarak, i8'in aerodinamik verimliliği sadece yolda daha iyi süzülmesini sağlamakla kalmadı; bataryanın üzerindeki yükü azaltarak enerji tüketim eğrisini optimize etti. Yazılım tabanlı hibrit güç yönetimi ile birleşen bu fiziksel kusursuzluk, BMW'nin gelecekteki tamamen elektrikli (BEV) M serisi araçları için paha biçilmez bir veri seti oluşturdu.</p>
+            <h2 class="section-title">2. Layering (Katmanlı) Tasarım ve "Hava Kanalları"</h2>
+            <p class="article-text">
+                i8'i diğer spor otomobillerden ayıran en büyük görsel ve işlevsel farklılık, arka C sütununun üzerindeki boşluklu yapıdır. <span class="highlight-text">"Stream Flow"</span> olarak adlandırılan bu tasarım dilinde gövde, sanki üst üste binmiş levhalardan oluşuyormuş gibi görünür.
+            </p>
+            <p class="article-text">
+                Tavan çizgisinin arkaya doğru alçaldığı noktada gövde ile arka çamurluklar arasında devasa tüneller oluşur. Bu tüneller rüzgarı hapsedip otomobilin arka farlarının üzerinden dışarı atar. Bu akıllı tasarım, araca devasa ve estetik dışı bir arka rüzgarlık (spoyler) takmaya gerek kalmadan, yüksek hızlarda arka aks üzerine devasa bir bastırma kuvveti (downforce) uygular.
+            </p>
+
+            <div class="quote-box">
+                "Bir otomobilin havayı nasıl yardığı kadar, havayı arkasında nasıl bıraktığı da önemlidir. i8, rüzgara karşı bir duvar örmek yerine, rüzgarın akıp geçebileceği bir kanyon inşa eder."
+            </div>
+
+            <h2 class="section-title">3. Hava Perdeleri (Air Curtains) ve Türbülans Kontrolü</h2>
+            <p class="article-text">
+                Bir otomobilin aerodinamik yapısındaki en büyük düşmanlardan biri, dönen tekerleklerin yarattığı türbülanslı havadır. i8'in ön tamponunun köşelerinde bulunan dikey yarıklar (<span class="highlight-text">Air Curtains</span>), yüksek basınçlı havayı emer ve ön tekerleklerin hemen dış kısmından dar bir jet akımı şeklinde püskürtür. Bu hava akımı, dönen jantların üzerinde adeta görünmez bir "hava perdesi" oluşturarak tekerlek davlumbazlarında oluşan hava girdaplarını engeller. Kelebek kapıların (butterfly doors) yan hatları da bu temiz havayı arka tekerleklere kadar kesintisiz taşır.
+            </p>
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="fas fa-wind"></i>
+                    <h3>0.26 Cd Direnç</h3>
+                    <p>Sınıfının en başarılı sürtünme katsayısı ile rüzgarı hissetmeden yarma yeteneği.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-arrow-down"></i>
+                    <h3>Doğal Downforce</h3>
+                    <p>Kanatlara ihtiyaç duymadan, hava tünelleriyle yaratılan yere basma kuvveti.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Maksimum Menzil</h3>
+                    <p>Pürüzsüz aerodinamik yapı sayesinde elektrik bataryasının menzilinde %15'e varan artış.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">4. Taban Aerodinamiği ve "Ground Effect"</h2>
+            <p class="article-text">
+                Otomobilin üstündeki hava akışı kadar altındaki hava akışı da kritiktir. i8'in altı, baştan sona tamamen düz ve kapalı bir zemin paneliyle kaplanmıştır. Havayı aracın altından hızla geçirip arka difüzöre yönlendiren bu sistem, <span class="highlight-text">Bernoulli prensibini</span> kullanarak otomobilin altında bir alçak basınç bölgesi yaratır. Bu da i8'in, hızlandıkça yola bir mıknatıs gibi yapışmasını sağlar. Bataryaların tam ortada ve zeminde yer almasıyla elde edilen düşük ağırlık merkezi (Center of Gravity), bu aerodinamik basma kuvvetiyle birleştiğinde kusursuz bir viraj kabiliyeti doğurur.
+            </p>
+
+            <h2 class="section-title">5. Aktif Hava Kapakçıkları ve Termal Yönetim</h2>
+            <p class="article-text">
+                BMW'nin ikonik "Böbrek Izgaraları" i8'de sadece estetik bir detay değildir; akıllı bir valf sistemi olarak çalışırlar. Ön kısımdaki hava girişleri (Active Air Flaps), motorun ve frenlerin soğutulmaya ihtiyacı olmadığı anlarda (örneğin tamamen elektrikli sürüşte) otomatik olarak kapanır. Bu sayede ön bölüm tamamen pürüzsüz bir duvara dönüşür, hava arabanın etrafından akıp gider ve aerodinamik direnç minimum seviyeye indirilir.
+            </p>
+
+            <h2 class="section-title">Teknik Verimlilik Tablosu</h2>
+            <div class="stat-container">
+                <div class="stat-bar">
+                    <div class="stat-info"><span>Aerodinamik Verimlilik Performansı</span><span>%94</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 94%;"></div></div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-info"><span>Gövde Ağırlık Tasarrufu (CFRP Katkısı)</span><span>%50</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 50%;"></div></div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-info"><span>Rüzgar Tüneli Optimizasyon Oranı</span><span>%98</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 98%;"></div></div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Sonuç: Geleceğin Çizgileri</h2>
+            <p class="article-text">
+                BMW i8, aerodinamik tasarımın performans, verimlilik ve saf sanat ile nasıl harmanlanabileceğini kanıtlayan bir laboratuvardır. Otomotiv tarihine geçen bu akışkan tasarım, bugün BMW'nin en yeni elektrikli modellerinin bile ilham kaynağı olmaya devam ediyor. i8 sadece yolu tutmaz; o, rüzgarı kendi lehine kullanarak havada süzülür.
+            </p>
+
+            <div id="giscus-container" style="margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <h3 style="margin-bottom: 25px;">Aerodinamik Hakkında Ne Düşünüyorsunuz?</h3>
+                <p style="color: var(--text-muted); font-style: italic; font-size: 0.9rem;">Düşüncelerinizi GitHub üzerinden giriş yaparak aşağıya bırakabilirsiniz.</p>
+            </div>
         </article>
+    </div>
 
-        <!-- GISCUS YORUM SİSTEMİ -->
-        <section class="comments-section">
-            <h3>Yorumlar</h3>
-            <script src="https://giscus.app/client.js"
-                data-repo="canergulec/bmw-site"
-                data-repo-id="R_kgDOSUPAgg"
-                data-category="General"
-                data-category-id="DIC_kwDOSUPAgg4Cig69"
-                data-mapping="number"
-                data-term="2" 
-                data-reactions-enabled="1"
-                data-emit-metadata="0"
-                data-input-position="bottom"
-                data-theme="dark"
-                data-lang="tr"
-                crossorigin="anonymous"
-                async>
-            </script>
-        </section>
-
-    </main>
+    <footer style="text-align: center; padding: 60px; color: var(--text-muted); font-size: 0.9rem;">
+        &copy; 2026 BMW Tutkusu Projesi | i-Division Technology<br>
+        Makale Yazarı: <strong>Azra Tanrıverdi</strong>
+    </footer>
 
 </body>
 </html>
