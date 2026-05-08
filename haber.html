@@ -152,7 +152,15 @@
         .stat-bar { margin-bottom: 35px; }
         .stat-info { display: flex; justify-content: space-between; margin-bottom: 12px; font-weight: 600; font-size: 1.1rem; }
         .progress-bg { height: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 5px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(to right, var(--primary-color), var(--accent-blue)); border-radius: 5px; }
+        
+        /* GÜNCELLENEN KISIM: Animasyon için width 0 yapıldı ve transition eklendi */
+        .progress-fill { 
+            height: 100%; 
+            background: linear-gradient(to right, var(--primary-color), var(--accent-blue)); 
+            border-radius: 5px; 
+            width: 0; 
+            transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1); 
+        }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -226,15 +234,15 @@
             <div class="stat-container">
                 <div class="stat-bar">
                     <div class="stat-info"><span>0-100 km/h (Hedef)</span><span>< 1.9 sn</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width: 98%;"></div></div>
+                    <div class="progress-bg"><div class="progress-fill" data-width="98%"></div></div>
                 </div>
                 <div class="stat-bar">
                     <div class="stat-info"><span>Maksimum Tork</span><span>1,100+ Nm</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width: 100%;"></div></div>
+                    <div class="progress-bg"><div class="progress-fill" data-width="100%"></div></div>
                 </div>
                 <div class="stat-bar">
                     <div class="stat-info"><span>Pist Dayanıklılığı (Tam Performans)</span><span>45+ Dakika</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width: 85%;"></div></div>
+                    <div class="progress-bg"><div class="progress-fill" data-width="85%"></div></div>
                 </div>
             </div>
 
@@ -252,8 +260,30 @@
 
     <footer style="text-align: center; padding: 60px; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05);">
         &copy; 2026 BMW Tutkusu Projesi | BMW M High-Performance Concept Division<br>
-        Makale Yazarı: <strong>Azra Tanrıverdi</strong>
+        Makale Yazarı: <strong>Hasan Kaya</strong>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBars = document.querySelectorAll('.progress-fill');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        const targetWidth = bar.getAttribute('data-width');
+                        bar.style.width = targetWidth;
+                        observer.unobserve(bar); 
+                    }
+                });
+            }, {
+                threshold: 0.2 
+            });
+
+            progressBars.forEach(bar => {
+                observer.observe(bar);
+            });
+        });
+    </script>
 </body>
 </html>
