@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW'nin 100 Yıllık Mirası | BMW Tutkusu</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --accent-blue: #00f2ff;
+            --bg-color: #000000;
+            --card-bg: rgba(28, 28, 30, 0.95);
+            --text-color: #f5f5f7;
+            --text-muted: #86868b;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo { height: 35px; }
+        .logo-text { font-size: 1.4rem; font-weight: 700; color: white; letter-spacing: 1px; }
+        .logo-text span { color: var(--primary-color); }
+
+        .back-btn {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex; align-items: center; gap: 8px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { color: var(--primary-color); }
+
+        .article-hero {
+            height: 90vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,1) 100%), url('bmw-tarih-bg.jpg') center/cover;
+        }
+
+        .article-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            max-width: 1000px;
+            background: linear-gradient(to bottom, #ffffff, #86868b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .author-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 35px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .author-photo {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+
+        .author-info { text-align: left; }
+        .author-name { margin: 0; font-weight: 700; font-size: 1.1rem; color: white; }
+        .author-title { margin: 0; font-size: 0.85rem; color: var(--text-muted); }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: -80px auto 100px;
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        .article-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(30px);
+            border-radius: 40px;
+            padding: 80px 60px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.9);
+        }
+
+        .section-title { font-size: 2.2rem; font-weight: 700; margin: 60px 0 25px; color: white; letter-spacing: -1px; }
+        .article-text { font-size: 1.2rem; color: #d2d2d7; margin-bottom: 30px; font-weight: 400; text-align: justify; }
+        .highlight-text { color: white; font-weight: 600; }
+
+        .quote-box {
+            border-left: 4px solid var(--primary-color);
+            padding: 25px 35px;
+            margin: 50px 0;
+            background: rgba(255, 255, 255, 0.03);
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #f5f5f7;
+            border-radius: 0 20px 20px 0;
+        }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin: 60px 0; }
+        .feature-item { background: rgba(255, 255, 255, 0.03); border-radius: 25px; padding: 35px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .feature-item i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .article-hero h1 { font-size: 2.4rem; }
+            .article-card { padding: 40px 25px; }
+            .section-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="logo.png" alt="BMW Logo" class="nav-logo">
+            <span class="logo-text">BMW<span>M</span></span>
+        </a>
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-chevron-left"></i> Ana Sayfaya Dön
+        </a>
+    </header>
+
+    <section class="article-hero">
+        <span class="meta-tag" style="background-color: var(--primary-color); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">TARİH • BAVARYA MİRASI</span>
+        <h1>Uçak Kanatlarından Asfalta: BMW'nin Bir Asırlık Mühendislik Destanı</h1>
+        
+        <div class="author-container">
+            <img src="photo-3.png" alt="Emin Kalemkuş" class="author-photo">
+            <div class="author-info">
+                <p class="author-name">Emin Kalemkuş</p>
+                <p class="author-title">Otomotiv Tarihçisi & Teknik Analist</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="content-wrapper">
+        <article class="article-card">
+            
+            <p class="article-text">
+                Bayerische Motoren Werke (BMW) hikayesi, bugün bildiğimiz spor sedanlardan çok uzakta, <span class="highlight-text">Karl Rapp</span>'ın Rapp Motorenwerke şirketinin 1913 yılında uçak motorları üretmeye başlamasıyla filizlendi. 1916'da resmi olarak kurulan şirket, I. Dünya Savaşı sırasında Alman hava kuvvetleri için yüksek irtifa motorları geliştirerek mühendislik becerisini kanıtladı. Ünlü <span class="highlight-text">BMW IIIa</span> motoru, o dönemde uçakların irtifa rekorlarını kırmasını sağlayan bir teknoloji mucizesiydi.
+            </p>
+
+            <h2 class="section-title">1. Yasaklar, Motosikletler ve Diriliş (1923-1928)</h2>
+            <p class="article-text">
+                Versay Antlaşması ile uçak motoru üretimi yasaklanan BMW, iflasın eşiğine gelse de vizyonunu iki tekerleğe çevirdi. Baş mühendis <span class="highlight-text">Max Friz</span>, 1923 yılında sadece beş haftada efsanevi <span class="highlight-text">R32</span> modelini tasarladı. Bugün bile BMW motosikletlerinin imzası olan "Boxer" motor yapısı ilk kez bu modelde kullanıldı. Bu tasarım, motorun havayla doğrudan temas ederek soğumasını sağlıyor ve ağırlık merkezini yere yaklaştırarak sürüş dinamiğini artırıyordu.
+            </p>
+            <p class="article-text">
+                1928 yılına gelindiğinde ise otomotiv dünyasına asıl giriş yapıldı. Eisenach fabrikasını satın alan BMW, Austin Seven lisansıyla üretilen "Dixi" modeliyle dört tekerleğe geçti. Dixi, başlangıçta ekonomik bir halk arabası olsa da BMW mühendisliğiyle birleştiğinde zamanla kendi karakterini kazandı.
+            </p>
+
+            <div class="quote-box">
+                "Bizim köklerimiz gökyüzündedir. Ancak tutkumuz, o gökyüzündeki hızı ve pürüzsüzlüğü asfaltın her bir santimine nakşetmektir."
+            </div>
+
+            <h2 class="section-title">2. Estetik ve Gücün Birleşimi: BMW 328 ve 507</h2>
+            <p class="article-text">
+                1930'ların sonunda BMW, sadece bir motor üreticisi değil, bir tasarım ikonu olduğunu <span class="highlight-text">BMW 328</span> modeliyle dünyaya ilan etti. 1936'da Nürburgring'de tanıtılan bu hafif siklet roadster, aerodinamik yapısı ve 80 beygirlik sıralı 6 silindirli motoruyla döneminin yarışlarına hükmetti. 
+            </p>
+            <p class="article-text">
+                1950'li yıllara gelindiğinde ise, Elvis Presley'nin bile hayranı olduğu efsanevi <span class="highlight-text">BMW 507</span> doğdu. Sadece 252 adet üretilen bu model, BMW'nin lüks ve estetik konusundaki limitlerini gösteriyordu. Ancak bu pahalı modeller şirketi finansal olarak zorlamaya başlamıştı.
+            </p>
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="fas fa-plane"></i>
+                    <h3>Havacılık Genetiği</h3>
+                    <p>Uçak motorlarından gelen yüksek devir ve dayanıklılık kültürü.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-gem"></i>
+                    <h3>Böbrek Izgara</h3>
+                    <p>İlk kez 1933'te BMW 303 ile hayatımıza giren ikonik kimlik.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-history"></i>
+                    <h3>Bavyera Ruhu</h3>
+                    <p>Mavi-beyaz renklerle gelen yerel bağlılık ve küresel kalite.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">3. 1959 Krizi ve Kaderin Değiştiği An</h2>
+            <p class="article-text">
+                II. Dünya Savaşı sonrası yıkılan fabrikalar ve mali kriz, 1959 yılında BMW'yi satılmanın eşiğine getirdi. Ezeli rakip Mercedes-Benz'in (Daimler-Benz) satın alma teklifi masadaydı. 9 Aralık 1959 tarihindeki genel kurulda, küçük hissedarların direnişi ve yatırımcı <span class="highlight-text">Herbert Quandt</span>'ın risk alarak şirketin çoğunluk hissesini satın almasıyla BMW bağımsızlığını korudu. Bu kurtuluş, BMW'yi bugün bildiğimiz "Sportif Sedan" markasına dönüştürecek olan <span class="highlight-text">Neue Klasse</span> (Yeni Sınıf) projesinin de önünü açtı.
+            </p>
+
+            <h2 class="section-title">4. Lüksün ve Teknolojinin Yeni Tanımı: 7 Serisi ve Dijital Devrim</h2>
+            <p class="article-text">
+                1970'lerin sonunda BMW, "Sürüş Keyfi" (Sheer Driving Pleasure) mottosunu sadece spor arabalarda değil, lüks segmentte de sunmaya başladı. 1977'de yollara çıkan ilk <span class="highlight-text">BMW 7 Serisi (E23)</span>, markanın teknoloji liderliğini ilan ettiği bir kale haline geldi. ABS fren sistemi ve yerleşik bilgisayar gibi yenilikler, BMW'nin konforu performansla nasıl harmanladığının en büyük kanıtıydı.
+            </p>
+            <p class="article-text">
+                1990'lara gelindiğinde ise BMW, motorsporlarındaki başarısını dijitalleşmeyle birleştirdi. Efsanevi <span class="highlight-text">iDrive</span> sistemiyle otomobil içi arayüzü devrimselleştirdi. Bugün ise bu miras, "i-Vision" konseptleriyle elektrikli ve otonom geleceğe taşınıyor. BMW artık sadece bir otomobil üreticisi değil, yazılım ve donanımı "M" ruhuyla harmanlayan bir teknoloji devine dönüştü.
+            </p>
+
+            <h2 class="section-title">Sonuç: Geleceğe Bağlı Bir Gelenek</h2>
+            <p class="article-text">
+                BMW tarihi, krizlerden güçlenerek çıkmanın ve mühendislikte asla taviz vermemenin öyküsüdür. Bugünden geçmişe baktığımızda, her bir BMW modelinde uçak motorlarının pürüzsüzlüğünü, 328'in estetiğini ve Neue Klasse'nin cesaretini görüyoruz. BMW için sürüş keyfi, sadece bir reklam sloganı değil, 100 yılı aşkın bir mühendislik namusudur.
+            </p>
+
+            <div id="giscus-container" style="margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <h3 style="margin-bottom: 25px;">BMW Mirası Hakkında Ne Düşünüyorsunuz?</h3>
+                <p style="color: var(--text-muted); font-style: italic; font-size: 0.9rem;">Tarihsel detaylar hakkındaki yorumlarınızı GitHub üzerinden iletebilirsiniz.</p>
+            </div>
+        </article>
+    </div>
+
+    <footer style="text-align: center; padding: 60px; color: var(--text-muted); font-size: 0.9rem;">
+        &copy; 2026 BMW Tutkusu Projesi | Heritage & Museum Division<br>
+        Makale Yazarı: <strong>Emin Kalemkuş</strong>
+    </footer>
+
+</body>
+</html>
