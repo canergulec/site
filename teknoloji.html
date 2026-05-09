@@ -158,6 +158,8 @@
 
         /* APPLE TARZI YORUM KISMI TASARIMI */
         .apple-comment-section { margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .apple-name-input { width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 14px 16px; color: white; font-family: inherit; font-size: 1.05rem; margin-bottom: 15px; outline: none; backdrop-filter: blur(10px); transition: all 0.3s ease; }
+        .apple-name-input:focus { border-color: var(--primary-color); background: rgba(255, 255, 255, 0.08); box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.2); }
         .apple-comment-input { width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 16px; color: white; font-family: inherit; font-size: 1.1rem; resize: vertical; min-height: 100px; backdrop-filter: blur(10px); transition: all 0.3s ease; margin-bottom: 15px; outline: none; }
         .apple-comment-input:focus { border-color: var(--primary-color); background: rgba(255, 255, 255, 0.08); box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.2); }
         .apple-btn { background: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 20px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; float: right; }
@@ -276,6 +278,7 @@
 
             <div class="apple-comment-section">
                 <h3 style="margin-bottom: 20px; font-size: 1.8rem;">Düşüncelerinizi Paylaşın</h3>
+                <input type="text" id="nameInput" class="apple-name-input" placeholder="İsminiz (İsteğe bağlı)">
                 <textarea id="commentInput" class="apple-comment-input" placeholder="Aerodinamik hakkında ne düşünüyorsunuz?"></textarea>
                 <button id="submitComment" class="apple-btn">Gönder</button>
                 <div id="commentList" class="apple-comment-list"></div>
@@ -313,9 +316,14 @@
 
         // YORUM EKLEME FONKSİYONU
         document.getElementById('submitComment').addEventListener('click', function() {
-            const input = document.getElementById('commentInput');
-            const text = input.value.trim();
-            if (text === '') return;
+            const nameInput = document.getElementById('nameInput');
+            const commentInput = document.getElementById('commentInput');
+            
+            const nameText = nameInput.value.trim() !== '' ? nameInput.value.trim() : 'Anonim Okur';
+            const text = commentInput.value.trim();
+            
+            if (text === '') return; // Yorum boşsa gönderme
+            
             const commentList = document.getElementById('commentList');
             const newComment = document.createElement('div');
             newComment.className = 'apple-comment';
@@ -323,14 +331,14 @@
                 <div class="apple-comment-header">
                     <div class="apple-avatar"><i class="fas fa-user"></i></div>
                     <div>
-                        <div class="apple-author">Anonim Okur</div>
+                        <div class="apple-author">${nameText}</div>
                         <div class="apple-time">Şimdi</div>
                     </div>
                 </div>
                 <div class="apple-text">${text.replace(/\n/g, '<br>')}</div>
             `;
             commentList.prepend(newComment);
-            input.value = '';
+            commentInput.value = ''; // Mesaj kutusunu temizle
         });
     </script>
 </body>
