@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW i7 M70 | Elektrikli Lüksün Zirvesi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Apple Tarzı Renkler ve Değişkenler */
+        :root { --primary-color: #0066cc; --bg-color: #000000; --text-color: #ffffff; --accent-color: #5e5e62; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
+        
+        /* Navbar */
+        header { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo { height: 40px; width: auto; }
+        .logo-text { font-size: 1.5rem; font-weight: bold; color: white; letter-spacing: 1px;}
+        .logo-text span { color: var(--primary-color); }
+        .back-link { color: white; text-decoration: none; font-size: 1rem; transition: color 0.3s; }
+        .back-link:hover { color: var(--primary-color); }
+
+        /* Kaydırma Animasyonları */
+        .reveal { opacity: 0; transform: translateY(80px); transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Hero Section */
+        .hero-section { 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            padding: 0 20px; 
+            position: relative; 
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url('i7-arkaplan.jpeg') center/cover no-repeat;
+        }
+        .hero-section h1 { font-size: 5rem; font-weight: 800; letter-spacing: -3px; margin-bottom: 10px; background: linear-gradient(to right, #ffffff, #888888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-section h2 { font-size: 2.2rem; font-weight: 400; color: #a1a1a6; }
+        
+        /* Immersive Bölümler */
+        .immersive-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 100px 5%; text-align: center; }
+        .immersive-text { max-width: 850px; margin-bottom: 50px; }
+        .immersive-text h3 { font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -1px; }
+        .immersive-text p { font-size: 1.5rem; color: #a1a1a6; font-weight: 400; }
+        
+        /* Görsel Konteyner */
+        .immersive-img-container { width: 100%; max-width: 1200px; border-radius: 30px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.9); background: #111; }
+        .immersive-img-container img { width: 100%; height: auto; display: block; transition: transform 0.8s ease; }
+        .immersive-img-container:hover img { transform: scale(1.03); }
+
+        /* Teknik Özellikler */
+        .specs-section { background-color: #050505; padding: 8rem 10%; border-top: 1px solid #1a1a1a; }
+        .specs-title { text-align: center; font-size: 3.5rem; margin-bottom: 5rem; font-weight: 700; }
+        .spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 4rem; }
+        .spec-item { border-left: 1px solid #333; padding-left: 30px; }
+        .spec-item h4 { color: #888; font-size: 1.1rem; text-transform: uppercase; margin-bottom: 15px; }
+        .spec-item p { font-size: 2.8rem; font-weight: 700; color: white; }
+
+        @media (max-width: 768px) { 
+            .hero-section h1 { font-size: 3.5rem; } 
+            .immersive-text h3 { font-size: 2.2rem; }
+            .spec-item p { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="logo.png" alt="BMW Logo" class="nav-logo">
+            <span class="logo-text">BMW<span>i7</span></span>
+        </a>
+        <a href="index.html" class="back-link"><i class="fas fa-chevron-left"></i> Geri Dön</a>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero-section reveal">
+        <h1>i7 M70</h1>
+        <h2>Güç, tamamen elektrikli ve tamamen lüks.</h2>
+    </section>
+
+    <!-- Bölüm 1: Dış Tasarım -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Geleceğin Formu.</h3>
+            <p>BMW i7 M70, heybetli duruşunu M detaylarıyla birleştirerek modern lüksü yeniden tanımlıyor.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="i7-kapak.jpeg" alt="BMW i7 M70 Dış Görünüm">
+        </div>
+    </section>
+
+    <!-- Bölüm 2: Curved Display -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>BMW Curved Display.</h3>
+            <p>Tamamen dijital, kavisli ekran ile tüm kontroller parmaklarınızın ucunda.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="i7-1.jpeg" alt="BMW i7 Kokpit">
+        </div>
+    </section>
+
+    <!-- Bölüm 3: Theater Screen -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Arka Koltukta Sinema Keyfi.</h3>
+            <p>31.3 inç boyutundaki BMW Sinema Ekranı ile yolculukları bir deneyime dönüştürün.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="i7-4.jpeg" alt="BMW i7 Theater Screen">
+        </div>
+    </section>
+
+    <!-- Bölüm 4: Executive Lounge -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Business Class Konforu.</h3>
+            <p>Geniş diz mesafesi ve yüksek kaliteli malzemelerle tasarlanmış arka yaşam alanı.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="i7-6.jpeg" alt="BMW i7 Arka Koltuk">
+        </div>
+    </section>
+
+    <!-- Bölüm 5: Kristal Detaylar -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Zanaatkarlık ve Teknoloji.</h3>
+            <p>Cam kaplamalı kontroller ve kristal efektli Interaction Bar ile büyüleyici bir atmosfer.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="i7-2.jpeg" alt="BMW i7 Orta Konsol">
+        </div>
+    </section>
+
+    <!-- Bölüm 6: Dijital Kapı Panelleri -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Dokunmatik Komuta Merkezi.</h3>
+            <p>Kapılara entegre edilen dokunmatik ekranlar ile konforunuzu kişiselleştirin.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="i7-8.jpeg" alt="BMW i7 Kapı Paneli">
+        </div>
+    </section>
+
+    <!-- Bölüm 7: Ergonomi -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Kusursuz Destek.</h3>
+            <p>Çok fonksiyonlu koltuklar, her sürüşte vücudunuza tam uyum sağlar.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="i7-7.jpeg" alt="BMW i7 Koltuk">
+        </div>
+    </section>
+
+    <!-- Bölüm 8: Arka Tasarım -->
+    <section class="immersive-section">
+        <div class="immersive-text reveal">
+            <h3>Estetik ve Pratiklik.</h3>
+            <p>M70'in sportif karakterini vurgulayan keskin hatlar ve geniş bagaj hacmi.</p>
+        </div>
+        <div class="immersive-img-container reveal">
+            <img src="i7-5.jpg" alt="BMW i7 Arka Görünüm">
+        </div>
+    </section>
+
+    <!-- Specs -->
+    <section class="specs-section reveal">
+        <h3 class="specs-title">Performans Verileri</h3>
+        <div class="spec-grid">
+            <div class="spec-item">
+                <h4>Motor</h4>
+                <p>Elektrikli M</p>
+            </div>
+            <div class="spec-item">
+                <h4>Güç</h4>
+                <p>660 BG</p>
+            </div>
+            <div class="spec-item">
+                <h4>0-100 km/s</h4>
+                <p>3.7 SN</p>
+            </div>
+            <div class="spec-item">
+                <h4>Tork</h4>
+                <p>1100 NM</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; 
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal; 
+    </script>
+</body>
+</html>
