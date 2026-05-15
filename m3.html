@@ -57,7 +57,10 @@
         .specs-section { background-color: #0a0a0a; padding: 8rem 10%; border-top: 1px solid #222; }
         .specs-title { text-align: center; font-size: 3rem; margin-bottom: 5rem; color: white; font-weight: 700; letter-spacing: -1px; }
         .spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; }
-        .spec-item { border-left: 2px solid #333; padding-left: 25px; }
+        
+        /* ÇİZGİ RENGİ GÜNCELLENDİ */
+        .spec-item { border-left: 2px solid var(--primary-color); padding-left: 25px; }
+        
         .spec-item h4 { color: #888; font-size: 1.2rem; font-weight: 500; margin-bottom: 10px; }
         .spec-item p { font-size: 2.5rem; font-weight: 700; color: white; letter-spacing: -1px; }
 
@@ -71,7 +74,6 @@
 </head>
 <body>
 
-    <!-- GÜNCELLENEN HEADER KISMI -->
     <header>
         <a href="index.html" class="logo-container">
             <img src="logo.png" alt="BMW Logo" class="nav-logo">
@@ -80,13 +82,11 @@
         <a href="index.html" class="back-link"><i class="fas fa-chevron-left"></i> Ana Sayfaya Dön</a>
     </header>
 
-    <!-- Açılış Metni ve Yeni Arka Plan -->
     <section class="hero-section reveal">
         <h1>M3 Competition</h1>
         <h2>Efsanevi miras. Modern agresiflik.</h2>
     </section>
 
-    <!-- Bölüm 1: Arka Koltuklar -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Dinamizm Her Yerde.</h3>
@@ -97,7 +97,6 @@
         </div>
     </section>
 
-    <!-- Bölüm 2: Ön M Koltuklar -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Piste Hazır Konfor.</h3>
@@ -108,7 +107,6 @@
         </div>
     </section>
 
-    <!-- Bölüm 3: Orta Konsol ve Multimedya -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Akıllı Kontrol Merkezi.</h3>
@@ -119,7 +117,6 @@
         </div>
     </section>
 
-    <!-- Bölüm 4: Dijital Gösterge Paneli -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Sadece Gerekli Olanlar.</h3>
@@ -130,7 +127,6 @@
         </div>
     </section>
 
-    <!-- Bölüm 5: Direksiyon M Butonu -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Karakterinizi Seçin.</h3>
@@ -141,7 +137,6 @@
         </div>
     </section>
 
-    <!-- Bölüm 6: Tam Kokpit -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Karbon Fiber Sanatı.</h3>
@@ -152,7 +147,6 @@
         </div>
     </section>
 
-    <!-- Bölüm 7: Motor -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Kalbinde Bir Efsane Yatar.</h3>
@@ -163,7 +157,6 @@
         </div>
     </section>
 
-    <!-- Teknik Özellikler Bölümü -->
     <section class="specs-section reveal">
         <h3 class="specs-title">Teknik Özellikler</h3>
         <div class="spec-grid">
