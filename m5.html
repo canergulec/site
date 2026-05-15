@@ -65,7 +65,10 @@
         .specs-section { background-color: #0a0a0a; padding: 8rem 10%; border-top: 1px solid #222; }
         .specs-title { text-align: center; font-size: 3rem; margin-bottom: 5rem; color: white; font-weight: 700; letter-spacing: -1px; }
         .spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; }
-        .spec-item { border-left: 2px solid #333; padding-left: 25px; }
+        
+        /* ÇİZGİ RENGİ GÜNCELLENDİ */
+        .spec-item { border-left: 2px solid var(--primary-color); padding-left: 25px; }
+        
         .spec-item h4 { color: #888; font-size: 1.2rem; font-weight: 500; margin-bottom: 10px; }
         .spec-item p { font-size: 2.5rem; font-weight: 700; color: white; letter-spacing: -1px; }
 
@@ -79,7 +82,6 @@
 </head>
 <body>
 
-    <!-- GÜNCELLENEN HEADER KISMI -->
     <header>
         <a href="index.html" class="logo-container">
             <img src="logo.png" alt="BMW Logo" class="nav-logo">
@@ -88,13 +90,11 @@
         <a href="index.html" class="back-link"><i class="fas fa-chevron-left"></i> Ana Sayfaya Dön</a>
     </header>
 
-    <!-- Açılış Metni ve Yeni Arka Plan -->
     <section class="hero-section reveal">
         <h1>M5 CS</h1>
         <h2>Tavizsiz güç. Kusursuz kontrol.</h2>
     </section>
 
-    <!-- Bölüm 1: M Sport Koltuklar -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Mükemmel Kavrama.</h3>
@@ -105,7 +105,6 @@
         </div>
     </section>
 
-    <!-- Bölüm 2: Kokpit ve Direksiyon -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Sürücü Odaklı Mimari.</h3>
@@ -116,7 +115,6 @@
         </div>
     </section>
 
-    <!-- Bölüm 3: Arka Yaşam Alanı -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Performans ve Konfor.</h3>
@@ -127,7 +125,6 @@
         </div>
     </section>
 
-    <!-- Bölüm 4: M Dijital Gösterge -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Gözünüz Yükseklerde Olsun.</h3>
@@ -138,7 +135,6 @@
         </div>
     </section>
 
-    <!-- Bölüm 5: M2 Butonu (Adrenalin) -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Parmaklarınızın Ucundaki Adrenalin.</h3>
@@ -149,7 +145,6 @@
         </div>
     </section>
 
-    <!-- Bölüm 6: Multimedya Ekranı -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Kesintisiz Bağlantı.</h3>
@@ -160,7 +155,6 @@
         </div>
     </section>
 
-    <!-- Bölüm 7: Vites ve Orta Konsol -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Gücün Komuta Merkezi.</h3>
@@ -171,7 +165,6 @@
         </div>
     </section>
 
-    <!-- Bölüm 8: V8 Motor -->
     <section class="immersive-section">
         <div class="immersive-text reveal">
             <h3>Mühendislik Harikası.</h3>
@@ -182,7 +175,6 @@
         </div>
     </section>
 
-    <!-- Teknik Özellikler Bölümü -->
     <section class="specs-section reveal">
         <h3 class="specs-title">Teknik Özellikler</h3>
         <div class="spec-grid">
