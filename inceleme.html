@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <style>
         :root {
@@ -156,18 +158,37 @@
             .quote-box { padding: 20px; font-size: 1.1rem; }
         }
 
-        /* APPLE TARZI YORUM KISMI TASARIMI */
+        /* YORUM KISMI STİLLERİ (GÜNCELLENDİ) */
         .apple-comment-section { margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        
+        .login-prompt { background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.2); padding: 20px; border-radius: 18px; text-align: center; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .login-prompt p { margin: 0; color: var(--text-muted); font-size: 0.95rem; }
+        
+        .active-user-profile { display: none; align-items: center; gap: 15px; margin-bottom: 15px; padding: 10px 15px; background: rgba(0, 102, 204, 0.1); border: 1px solid rgba(0, 102, 204, 0.3); border-radius: 20px; }
+        .active-user-profile img { width: 40px; height: 40px; border-radius: 50%; }
+        .active-user-profile .user-details { display: flex; flex-direction: column; }
+        .active-user-profile .user-details span { font-weight: 600; color: white; }
+        .active-user-profile .user-details small { color: var(--text-muted); font-size: 0.8rem; }
+
         .apple-name-input { width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 14px 16px; color: white; font-family: inherit; font-size: 1.05rem; margin-bottom: 15px; outline: none; backdrop-filter: blur(10px); transition: all 0.3s ease; }
         .apple-name-input:focus { border-color: var(--primary-color); background: rgba(255, 255, 255, 0.08); box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.2); }
         .apple-comment-input { width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 16px; color: white; font-family: inherit; font-size: 1.1rem; resize: vertical; min-height: 100px; backdrop-filter: blur(10px); transition: all 0.3s ease; margin-bottom: 15px; outline: none; }
         .apple-comment-input:focus { border-color: var(--primary-color); background: rgba(255, 255, 255, 0.08); box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.2); }
-        .apple-btn { background: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 20px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; float: right; }
+        
+        .btn-container { display: flex; justify-content: flex-end; align-items: center; gap: 15px; }
+        .logout-text { color: #ff453a; font-size: 0.85rem; cursor: pointer; display: none; text-decoration: underline; }
+        
+        .apple-btn { background: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 20px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; }
         .apple-btn:hover { background: #005bb5; transform: scale(0.97); }
+        
         .apple-comment-list { margin-top: 70px; clear: both; display: flex; flex-direction: column; gap: 20px; }
         .apple-comment { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 20px; backdrop-filter: blur(15px); animation: fadeIn 0.5s ease; }
         .apple-comment-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-        .apple-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #2c2c2e, #1c1c1e); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; }
+        
+        /* Orijinal İkon ve Yeni Resim için Stiller */
+        .apple-avatar-icon { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #2c2c2e, #1c1c1e); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; }
+        .apple-avatar-img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.2); }
+        
         .apple-author { font-weight: 600; color: white; font-size: 1.05rem; }
         .apple-time { font-size: 0.85rem; color: var(--text-muted); }
         .apple-text { color: #d2d2d7; line-height: 1.6; font-size: 1.05rem; }
@@ -178,7 +199,7 @@
     <header>
         <a href="index.html" class="logo-container">
             <img src="logo.png" alt="BMW Logo" class="nav-logo">
-            <span class="logo-text">BMW<span>
+            <span class="logo-text">BMW</span>
         </a>
         <a href="index.html" class="back-btn">
             <i class="fas fa-chevron-left"></i> Blog'a Dön
@@ -271,9 +292,28 @@
 
             <div class="apple-comment-section">
                 <h3 style="margin-bottom: 20px; font-size: 1.8rem;">Düşüncelerinizi Paylaşın</h3>
+                
+                <div class="login-prompt" id="loginPrompt">
+                    <p>Yorumunuzda profil fotoğrafınızın ve isminizin görünmesi için giriş yapabilirsiniz.</p>
+                    <div id="commentGoogleBtn"></div>
+                </div>
+
+                <div class="active-user-profile" id="activeUserProfile">
+                    <img id="activeUserAvatar" src="" alt="Profil">
+                    <div class="user-details">
+                        <span id="activeUserName">İsim</span>
+                        <small>Google ile bağlandı</small>
+                    </div>
+                </div>
+
                 <input type="text" id="nameInput" class="apple-name-input" placeholder="İsminiz (İsteğe bağlı)">
                 <textarea id="commentInput" class="apple-comment-input" placeholder="M5 CS'in mühendisliği hakkında ne düşünüyorsunuz?"></textarea>
-                <button id="submitComment" class="apple-btn">Gönder</button>
+                
+                <div class="btn-container">
+                    <span class="logout-text" id="commentLogoutBtn">Çıkış Yap</span>
+                    <button id="submitComment" class="apple-btn">Gönder</button>
+                </div>
+                
                 <div id="commentList" class="apple-comment-list"></div>
             </div>
 
@@ -286,52 +326,115 @@
     </footer>
 
     <script>
+        // --- 1. Progress Bar Animasyonu ---
         document.addEventListener('DOMContentLoaded', () => {
             const progressBars = document.querySelectorAll('.progress-fill');
-
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const bar = entry.target;
-                        const targetWidth = bar.getAttribute('data-width');
-                        bar.style.width = targetWidth;
+                        bar.style.width = bar.getAttribute('data-width');
                         observer.unobserve(bar); 
                     }
                 });
-            }, {
-                threshold: 0.2 
-            });
+            }, { threshold: 0.2 });
 
-            progressBars.forEach(bar => {
-                observer.observe(bar);
-            });
+            progressBars.forEach(bar => observer.observe(bar));
         });
 
-        // YORUM EKLEME FONKSİYONU
+        // --- 2. Google Login İşlemleri ---
+        let loggedInUser = null; // Giriş yapan kullanıcıyı tutacağımız değişken
+
+        function decodeJwtResponse(token) {
+            let base64Url = token.split('.')[1];
+            let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
+        }
+
+        function handleCredentialResponse(response) {
+            const responsePayload = decodeJwtResponse(response.credential);
+            
+            // Kullanıcı bilgilerini değişkene kaydet
+            loggedInUser = {
+                name: responsePayload.name,
+                picture: responsePayload.picture
+            };
+
+            // Arayüzü güncelle
+            document.getElementById('loginPrompt').style.display = 'none';
+            document.getElementById('nameInput').style.display = 'none'; // Manuel isim girmeyi gizle
+            
+            document.getElementById('activeUserProfile').style.display = 'flex';
+            document.getElementById('activeUserAvatar').src = loggedInUser.picture;
+            document.getElementById('activeUserName').innerText = loggedInUser.name;
+            
+            document.getElementById('commentLogoutBtn').style.display = 'block';
+        }
+
+        // Çıkış Yapma
+        document.getElementById('commentLogoutBtn').addEventListener('click', () => {
+            loggedInUser = null;
+            document.getElementById('loginPrompt').style.display = 'flex';
+            document.getElementById('nameInput').style.display = 'block';
+            document.getElementById('activeUserProfile').style.display = 'none';
+            document.getElementById('commentLogoutBtn').style.display = 'none';
+        });
+
+        window.onload = function () {
+            google.accounts.id.initialize({
+                // DİKKAT: Buraya kendi Client ID'ni girmelisin!
+                client_id: "360570378366-eqgg07dufk21oe1uufqtehecmbai5c4n.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+            
+            google.accounts.id.renderButton(
+                document.getElementById("commentGoogleBtn"),
+                { theme: "outline", size: "large", shape: "pill" } 
+            );
+        }
+
+        // --- 3. Yorum Ekleme Fonksiyonu ---
         document.getElementById('submitComment').addEventListener('click', function() {
             const nameInput = document.getElementById('nameInput');
             const commentInput = document.getElementById('commentInput');
-            
-            const nameText = nameInput.value.trim() !== '' ? nameInput.value.trim() : 'Anonim Okur';
             const text = commentInput.value.trim();
             
-            if (text === '') return;
+            if (text === '') return; // Boş yorum atılamaz
+            
+            let displayName, displayAvatarHTML;
+
+            // Eğer Google ile giriş yapıldıysa
+            if (loggedInUser) {
+                displayName = loggedInUser.name;
+                displayAvatarHTML = `<img src="${loggedInUser.picture}" alt="Avatar" class="apple-avatar-img">`;
+            } 
+            // Giriş yapılmadıysa manuel ismi al
+            else {
+                displayName = nameInput.value.trim() !== '' ? nameInput.value.trim() : 'Anonim Okur';
+                displayAvatarHTML = `<div class="apple-avatar-icon"><i class="fas fa-user"></i></div>`;
+            }
             
             const commentList = document.getElementById('commentList');
             const newComment = document.createElement('div');
             newComment.className = 'apple-comment';
+            
+            // Yorum HTML'i
             newComment.innerHTML = `
                 <div class="apple-comment-header">
-                    <div class="apple-avatar"><i class="fas fa-user"></i></div>
+                    ${displayAvatarHTML}
                     <div>
-                        <div class="apple-author">${nameText}</div>
+                        <div class="apple-author">${displayName}</div>
                         <div class="apple-time">Şimdi</div>
                     </div>
                 </div>
                 <div class="apple-text">${text.replace(/\n/g, '<br>')}</div>
             `;
+            
             commentList.prepend(newComment);
-            commentInput.value = ''; 
+            commentInput.value = ''; // Kutuyu temizle
         });
     </script>
 </body>
